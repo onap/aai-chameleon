@@ -1,0 +1,16 @@
+chameleon:
+  build: ./chameleon
+  container_name: chameleon
+  environment:
+    - CONFIG_LOCATION=/opt/chameleon/chameleon-config.edn
+  volumes:
+      - ./chameleon-config.edn:/opt/chameleon/chameleon-config.edn
+
+nginx:
+  build: ./nginx
+  container_name: nginx
+  links:
+    - chameleon
+  ports:
+    - 80:80
+    - 443:443

@@ -1,0 +1,6 @@
+sudo cp chameleon.service /etc/systemd/system
+sudo chown root:root /etc/systemd/system/chameleon.service
+sudo chmod 644 /etc/systemd/system/chameleon.service
+
+sudo systemctl enable chameleon
+sudo systemctl daemon-reload

@@ -1,0 +1,10 @@
+{:event-config {:host "localhost:3904"
+                :topic "spikeEvents"
+                :motsid ""
+                :pass ""
+                :consumer-group "chameleon"
+                :consumer-id "chameleon"
+                :timeout 15000
+                :batch-size 8
+                :type "HTTPAUTH"}
+ :gallifrey-host "localhost:443"}
