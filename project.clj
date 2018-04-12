@@ -13,7 +13,7 @@
                  [integrant "0.6.2"]
                  [clojure-future-spec "1.9.0-beta4"]
                  [yogthos/config "0.9"]
-                 [org.onap.aai.event-client/event-client-dmaap "1.2.0"]
+                 [org.onap.aai.event-client/event-client-dmaap "1.2.1"]
                  ]
   :repositories [["onap-releases" {:url "https://nexus.onap.org/content/repositories/releases/"}]
                  ["onap-public" {:url "https://nexus.onap.org/content/repositories/public/"}]
