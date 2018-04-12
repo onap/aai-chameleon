@@ -26,20 +26,32 @@
 
 (declare serialize de-serialize)
 
-(defresource entity-endpoint [id]
+(defresource resource-endpoint [type id]
   :allowed-methods [:get]
   :available-media-types ["application/json"]
   :exists? (fn [ctx]
-             (let [resource (-> (c-route/query @g-host id (-> ctx :request :params :t-k)))]
+             (let [resource (c-route/query @g-host id type (-> ctx
+                                                               :request
+                                                               :params
+                                                               (select-keys [:t-t :t-k])))] ; Only pass through the allowable set of keys
                (when (= (:status resource) 200)
-                 {::resource (-> resource :body json/parse-string (dissoc "_meta") (chameleon.aai-processor/from-gallifrey))})))
+                 {::resource (-> resource
+                                 :body
+                                 json/parse-string
+                                 (dissoc "_meta")
+                                 (chameleon.aai-processor/from-gallifrey))})))
   :existed? (fn [ctx]
-              (when-let [status (-> (c-route/query @g-host id (-> ctx :request :params :t-k)) :status)]
+              (when-let [status (-> (c-route/query @g-host id type (-> ctx
+                                                                       :request
+                                                                       :params
+                                                                       (select-keys [:t-t :t-k]))) ;Only pass through the allowable set of keys
+                                    :status)]
                 (= status 410)))
   :handle-ok ::resource)
 
 (defroutes app-routes
-  (GET "/entity/:id" [id] (entity-endpoint id))
+  (GET "/entity/:id" [id] (resource-endpoint "entity" id))
+  (GET "/relationship/:id" [id] (resource-endpoint "relationship"  id))
   (resources "/"))
 
 (def handler
