@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a93c517_7beb51dc",
+        "filename": "src/chameleon/aai_processor.clj",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 347
+      },
+      "writtenOn": "2018-04-13T14:01:31Z",
+      "side": 1,
+      "message": "Duplicate code?  Looks like id, type, and properties get set in either case.  Could refactor to not repeat.",
+      "revId": "c65767941febe2372d5bdd2a85d9874b80ecf230",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a93c517_3bc14954",
+        "filename": "src/chameleon/aai_processor.clj",
+        "patchSetId": 1
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 347
+      },
+      "writtenOn": "2018-04-13T14:01:31Z",
+      "side": 1,
+      "message": "Duplicate code?  Could set a map with the :meta and :body and then conditionally assoc in the :properties?",
+      "revId": "c65767941febe2372d5bdd2a85d9874b80ecf230",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
