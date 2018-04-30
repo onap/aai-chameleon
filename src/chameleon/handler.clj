@@ -1,6 +1,5 @@
 (ns chameleon.handler
   (:require [chameleon.route :as c-route]
-            [chameleon.aai-processor]
             [utilis.map :refer [map-vals compact]]
             [liberator.core :refer [defresource]]
             [compojure.core :refer [GET PUT PATCH ANY defroutes]]
@@ -16,13 +15,16 @@
 (declare handler)
 
 (defonce ^:private g-host (atom nil))
+(defonce ^:private g-transformer nil)
 
-(defmethod ig/init-key :chameleon/handler  [_ {:keys [gallifrey-host]}]
+(defmethod ig/init-key :chameleon/handler  [_ {:keys [gallifrey-host gallifrey-transformer]}]
   (reset! g-host gallifrey-host)
+  (def g-transformer gallifrey-transformer)
   handler)
 
 (defmethod ig/halt-key! :chameleon/handler  [_ _]
-  (reset! g-host nil))
+  (reset! g-host nil)
+  (def g-transformer nil))
 
 (declare serialize de-serialize)
 
@@ -39,7 +41,7 @@
                                  :body
                                  json/parse-string
                                  (dissoc "_meta")
-                                 (chameleon.aai-processor/from-gallifrey))})))
+                                 (g-transformer))})))
   :existed? (fn [ctx]
               (when-let [status (-> (c-route/query @g-host id type (-> ctx
                                                                        :request

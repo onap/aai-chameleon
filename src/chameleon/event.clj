@@ -1,7 +1,5 @@
 (ns chameleon.event
-  (:require [chameleon.txform]
-            [chameleon.route]
-            [integrant.core :as ig]
+  (:require [integrant.core :as ig]
             [clojure.string :refer [starts-with?]])
   (:import [org.onap.aai.event.client DMaaPEventConsumer]))
 

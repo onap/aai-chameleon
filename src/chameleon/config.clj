@@ -10,7 +10,11 @@
                                        [:aai :processor] from-spike)
                :gallifrey-host (:gallifrey-host app-config)}
               :chameleon/handler
-              {:gallifrey-host (:gallifrey-host app-config)}
+              {:gallifrey-host (:gallifrey-host app-config)
+               :gallifrey-transformer from-gallifrey}
+              :chameleon/aai-processor
+              {:provenance-attr "last-mod-source-of-truth"
+               :truth-attr "truth-time"}
               :chameleon/http-server
               {:port (:http-port app-config)
                :handler (ig/ref :chameleon/handler)}}]

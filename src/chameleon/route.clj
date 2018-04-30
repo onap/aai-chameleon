@@ -59,14 +59,12 @@
 (defn assert-gallifrey [host actor type payload]
   "Propagates an assertion to Gallifrey based off of an event payload coming in from the event service."
   (let [{:keys [meta body]} payload
-        {:keys [key operation time]} meta
-        time-map (filter val time)]
-    (println time-map)
+        {:keys [key operation time]} meta]
     (println operation " "  type "  with key " key)
     (interpret-response key (case operation
                               "CREATE"
-                              (assert-create host actor type key body time-map)
+                              (assert-create host actor type key body time)
                               "UPDATE"
-                              (assert-update host actor type key body time-map)
+                              (assert-update host actor type key body time)
                               "DELETE"
-                              (assert-delete host actor type key time-map)))))
+                              (assert-delete host actor type key time)))))
