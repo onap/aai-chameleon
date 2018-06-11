@@ -1,2 +1,13 @@
-lein uberjar
-cp -f ../../target/chameleon.jar .
+!#/bin/bash
+ls build-chameleon
+if [ $? -eq 0 ]; then
+    echo "Building Chameleon"
+else
+    echo "FAILED. Make sure you're in the same directory as the \"build-chameleon\" file."
+    exit 1
+fi
+pushd .
+cd ../../
+mvn -X clean package
+popd
+cp -f ../../target/chameleon-0.1.0-fat-jar.jar ./chameleon.jar

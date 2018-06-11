@@ -1,8 +1,9 @@
 # Created by https://www.gitignore.io/api/clojure,emacs,osx,java
 
 ### Clojure ###
-pom.xml
 pom.xml.asc
+chameleon.iml
+.idea
 *jar
 lib/
 classes/
