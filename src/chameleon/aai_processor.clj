@@ -1,9 +1,8 @@
 (ns chameleon.aai-processor
-  (:require
-   [chameleon.route :refer :all]
-   [cheshire.core :refer :all]
-   [integrant.core :as ig]
-   [clojure.set :refer :all]))
+  (:require [chameleon.route :refer :all]
+            [cheshire.core :refer :all]
+            [integrant.core :as ig]
+            [clojure.set :refer :all]))
 
 (defonce ^:private p-attr (atom nil))
 (defonce ^:private t-attr (atom nil))
@@ -33,8 +32,7 @@
     {"id" id
      "type" type
      "source" {"id" src-id "type" src-type}
-     "target" {"id" target-id "type" target-type}})
-  )
+     "target" {"id" target-id "type" target-type}}))
 
 (defn from-gallifrey
   "Transforms Gallifrey response payloads into a format consumable by AAI-centric clients"
@@ -42,27 +40,21 @@
   (let [resource-type (get-in body ["properties" "_type"])
         id (body "_id")
         type (get-in body ["properties" "type"])
-        properties (body "properties")]
+        properties (body "properties")
+        entity-response {"id" id
+                         "type" type
+                         "properties" (dissoc properties "_type" "type")}]
     (if (= resource-type "entity")
-                                        ; Transform into an entity type
+      ;; Transform into an entity type
       (let [relationships (body "relationships")]
-        {
-         "id" id
-         "type" type
-         "properties" (dissoc properties "_type" "type")
-         "in" (into [] (map gen-trim-relationship (filter #(= (get-in % ["target" "id"]) id) relationships)))
-         "out" (into [] (map gen-trim-relationship (filter #(= (get-in % ["source" "id"]) id) relationships)))
-         })
-                                        ; Transform into a relationship type
-      {
-       "id" id
-       "type" type
-       "properties" (dissoc properties "_type" "type")
-       })))
+        (assoc entity-response
+               "in" (into [] (map gen-trim-relationship (filter #(= (get-in % ["target" "id"]) id) relationships)))
+               "out" (into [] (map gen-trim-relationship (filter #(= (get-in % ["source" "id"]) id) relationships)))))
+      entity-response)))
 
 (defn from-spike
   "Transforms Spike-based event payloads to a format accepted by Gallifrey for vertices and relationships"
-  [gallifrey-host payload]
+  [gallifrey-host payload & [error-logger audit-logger]]
   (let [txpayload (map-keywords (parse-string payload))
         operation (:operation txpayload)
         parse-type (if (contains? txpayload :vertex)
@@ -74,13 +66,14 @@
         entity (map-keywords (parse-type txpayload))
         key (:key entity)
         properties (assoc (:properties entity) :type (:type entity))
-        truth-time (if (not (nil?  (get properties @t-attr))) {:t-t (get properties @t-attr)})
-        assertion  {:meta {:key key
-                           :operation operation
-                           :time truth-time}}
+        truth-time (if (not (nil? (get properties @t-attr))) {:t-t (get properties @t-attr)})
+        assertion {:meta {:key key
+                          :operation operation
+                          :time truth-time}}
         provenance (get properties @p-attr "aai")]
-    (assert-gallifrey gallifrey-host provenance (name entity-type) (if (= entity-type :entity)
-                                                                     (assoc assertion  :body (generate-string {:properties properties}))
-                                                                     (assoc assertion :body (generate-string (conj {:properties properties}
-                                                                                                                   {:source  (rename-keys (:source entity) {"key" "id"})}
-                                                                                                                   {:target (rename-keys (:target entity) {"key" "id"})})))))))
+    (assert-gallifrey! gallifrey-host provenance (name entity-type)
+                       (if (= entity-type :entity)
+                         (assoc assertion :body (generate-string {:properties properties}))
+                         (assoc assertion :body (generate-string (conj {:properties properties}
+                                                                       {:source  (rename-keys (:source entity) {"key" "id"})}
+                                                                       {:target (rename-keys (:target entity) {"key" "id"})})))) error-logger audit-logger)))
