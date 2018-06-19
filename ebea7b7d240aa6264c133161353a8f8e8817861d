@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a93c517_57178654",
+        "filename": "README.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 931
+      },
+      "writtenOn": "2018-06-19T14:21:58Z",
+      "side": 1,
+      "message": "Should probably add instructions for running locally",
+      "revId": "ebea7b7d240aa6264c133161353a8f8e8817861d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a93c517_37143a4c",
+        "filename": "dev/dev.clj",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 931
+      },
+      "writtenOn": "2018-06-19T14:21:58Z",
+      "side": 1,
+      "message": "Want to get rid of this?",
+      "revId": "ebea7b7d240aa6264c133161353a8f8e8817861d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "5a93c517_b7ffea01",
+        "filename": "src/chameleon/handler.clj",
+        "patchSetId": 3
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 931
+      },
+      "writtenOn": "2018-06-19T14:21:58Z",
+      "side": 1,
+      "message": "Longer variable names would be nice",
+      "revId": "ebea7b7d240aa6264c133161353a8f8e8817861d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
