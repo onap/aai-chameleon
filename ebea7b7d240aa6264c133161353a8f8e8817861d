@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "da7095c5_7ca41f57",
+        "filename": "README.md",
+        "patchSetId": 3
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1029
+      },
+      "writtenOn": "2018-07-26T12:43:37Z",
+      "side": 1,
+      "message": "agreed.",
+      "parentUuid": "5a93c517_57178654",
+      "revId": "ebea7b7d240aa6264c133161353a8f8e8817861d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a93c517_37143a4c",
         "filename": "dev/dev.clj",
         "patchSetId": 3
@@ -36,6 +54,24 @@
     },
     {
       "key": {
+        "uuid": "da7095c5_5c9fdb03",
+        "filename": "dev/dev.clj",
+        "patchSetId": 3
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1029
+      },
+      "writtenOn": "2018-07-26T12:43:37Z",
+      "side": 1,
+      "message": "Initially, I wanted to leave this in here so a developer can uncomment it just run it.\nIt might make more sense to have it in the Readme file.",
+      "parentUuid": "5a93c517_37143a4c",
+      "revId": "ebea7b7d240aa6264c133161353a8f8e8817861d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "5a93c517_b7ffea01",
         "filename": "src/chameleon/handler.clj",
         "patchSetId": 3
@@ -47,6 +83,24 @@
       "writtenOn": "2018-06-19T14:21:58Z",
       "side": 1,
       "message": "Longer variable names would be nice",
+      "revId": "ebea7b7d240aa6264c133161353a8f8e8817861d",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da7095c5_bc9ab712",
+        "filename": "src/chameleon/handler.clj",
+        "patchSetId": 3
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1029
+      },
+      "writtenOn": "2018-07-26T12:43:37Z",
+      "side": 1,
+      "message": "yupp. I\u0027ll fix this.",
+      "parentUuid": "5a93c517_b7ffea01",
       "revId": "ebea7b7d240aa6264c133161353a8f8e8817861d",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
