@@ -55,7 +55,7 @@
 (defn from-spike
   "Transforms Spike-based event payloads to a format accepted by Gallifrey for vertices and relationships"
   [gallifrey-host payload & [error-logger audit-logger]]
-  (let [txpayload (map-keywords (parse-string payload))
+  (let [txpayload (:body (parse-string payload true))
         operation (:operation txpayload)
         parse-type (if (contains? txpayload :vertex)
                      :vertex

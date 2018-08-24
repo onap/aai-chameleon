@@ -59,6 +59,9 @@
                    "UPDATE" (assert-update! host actor type key body time)
                    "DELETE" (assert-delete! host actor type key time))
         {:keys [status body]} @g-assert]
-    (log/info e-logger "GALLIFREY_ASSERTED" [(str type) (str key)])
+    (log/info e-logger "RESPONSE" (mapv str [operation key status body]))
+    (if (and (>= status 200) (<= status 299))
+      (log/info e-logger "GALLIFREY_ASSERTED" ["SUCCEEDED" (str type) (str key)])
+      (log/info e-logger "GALLIFREY_ASSERTED" ["FAILED" (str type) (str key)]))
     (log/info a-logger "RESPONSE" (mapv str [operation key status body])
               :fields {:response-code status :response-description (hs/get-name status)})))

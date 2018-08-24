@@ -11,9 +11,20 @@
             [clojure.tools.namespace.repl :refer [refresh refresh-all disable-reload!]]
             [clojure.repl :refer [apropos dir doc find-doc pst source]]
             [clojure.test :refer [run-tests run-all-tests]]
-            [clojure.pprint :refer [pprint]]))
+            [clojure.pprint :refer [pprint]]
+            [chameleon.kafka :refer [deser]]))
 
 (disable-reload! (find-ns 'integrant.core))
+
+
+
+
+(def kafka-config {"client.id" "chameleon.developer"
+                   "bootstrap.servers" "host:port"
+                   "key.deserializer" "org.apache.kafka.common.serialization.StringDeserializer"
+                   "value.deserializer" "org.apache.kafka.common.serialization.StringDeserializer"
+                   "enable.auto.commit" "false"
+                   "auto.offset.reset" "earliest"})
 
 (integrant.repl/set-prep! (constantly (config {:event-config {:aai {:host "localhost:3904"
                                                                     :topic "events"
@@ -23,6 +34,8 @@
                                                                     :consumer-id"chameleon1"
                                                                     :timeout 15000
                                                                     :batch-size 8
-                                                                    :type "HTTPAUTH"}}
+                                                                    :type "HTTPAUTH"
+                                                                    :kafka-config kafka-config}
+                                                              :source :kafka}
                                                :gallifrey-host "localhost:443"
                                                :http-port 3449})))

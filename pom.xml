@@ -7,9 +7,7 @@
   <name>chameleon</name>
   <description/>
   <scm>
-    <tag>36b5671af2c3eec5ca81663382c4ca2898f79e55
-</tag>
-    <url/>
+    <tag>e16bda37d76e63e0f903bba13ed1dccf3b17f395</tag>
   </scm>
   <build>
     <sourceDirectory>src</sourceDirectory>
@@ -136,7 +134,7 @@
     </repository>
     <repository>
       <id>clojars</id>
-      <url>https://clojars.org/repo/</url>
+      <url>https://repo.clojars.org/</url>
       <snapshots>
         <enabled>true</enabled>
       </snapshots>
@@ -193,6 +191,11 @@
       <groupId>org.clojure</groupId>
       <artifactId>clojure</artifactId>
       <version>1.9.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.clojure</groupId>
+      <artifactId>core.async</artifactId>
+      <version>0.4.474</version>
     </dependency>
     <dependency>
       <groupId>com.7theta</groupId>
@@ -258,6 +261,11 @@
       <groupId>org.onap.aai.event-client</groupId>
       <artifactId>event-client-dmaap</artifactId>
       <version>1.2.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.onap.aai.event-client</groupId>
+      <artifactId>event-client-kafka</artifactId>
+      <version>1.3.0</version>
     </dependency>
     <dependency>
       <groupId>org.onap.aai.logging-service</groupId>
