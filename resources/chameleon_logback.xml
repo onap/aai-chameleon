@@ -1,5 +1,4 @@
 <configuration scan="true" scanPeriod="3 seconds" debug="false">
-  <!--<jmxConfigurator /> -->
   <!-- directory path for all other type logs -->
 
   <property name="logDir" value="/opt/chameleon/logs" />
@@ -13,7 +12,7 @@
   <property name="auditLogName" value="audit" />
   <property name="debugLogName" value="debug" />
 
-  <property name="errorLogPattern" value="%d{yyyy-MM-dd'T'HH:mm:ss.SSSXXX}|%mdc{RequestId}|%thread|DataRouter|%mdc{PartnerName}|%logger||%.-5level|%msg%n" />
+  <property name="errorLogPattern" value="%d{yyyy-MM-dd'T'HH:mm:ss.SSSXXX}|%mdc{RequestId}|%thread|CHAMELEON|%mdc{PartnerName}|%logger||%.-5level|%msg%n" />
 
   <property name="auditMetricPattern" value="%msg%n" />
 
@@ -23,8 +22,7 @@
   <!-- EELF Appenders -->
   <!-- ============================================================================ -->
 
-  <!-- The EELFAppender is used to record events to the general application
-  log -->
+  <!-- The EELFAppender is used to record events to the general application log -->
 
   <appender name="EELF"
             class="ch.qos.logback.core.rolling.RollingFileAppender">
@@ -55,7 +53,7 @@
        related logging events. The audit logger and appender are specializations
        of the EELF application root logger and appender. This can be used to segregate
        Policy engine events from other components, or it can be eliminated to record
-  these events as part of the application root log. -->
+       these events as part of the application root log. -->
 
   <appender name="EELFAudit"
             class="ch.qos.logback.core.rolling.RollingFileAppender">
@@ -80,7 +78,7 @@
   <!--  EELF loggers -->
   <!-- ============================================================================ -->
 
-  <!-- CRUD Service loggers -->
+  <!-- CHAMELEON Service loggers -->
   <logger name="chameleon" level="INFO">
     <appender-ref ref="asyncEELF" />
   </logger>
