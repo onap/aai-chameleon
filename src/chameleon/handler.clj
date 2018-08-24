@@ -78,17 +78,3 @@
   (-> app-routes
       (wrap-defaults api-defaults)
       (log-reqs loggers)))
-
-
-;;; Implementation
-
-(defn- serialize
-  [e]
-  (compact
-   (update e :_meta #(map-vals
-                      (fn [m]
-                        (map-vals str m)) %))))
-
-(defn- de-serialize
-  [e]
-  e)

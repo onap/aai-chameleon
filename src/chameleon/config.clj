@@ -15,8 +15,8 @@
                :gallifrey-transformer from-gallifrey
                :loggers (ig/ref :chameleon/loggers)}
               :chameleon/aai-processor
-              {:provenance-attr "last-mod-source-of-truth"
-               :truth-attr "truth-time"}
+              {:provenance-attr :last-mod-source-of-truth
+               :truth-attr :truth-time}
               :chameleon/http-server
               {:port (:http-port app-config)
                :handler (ig/ref :chameleon/handler)}}]
