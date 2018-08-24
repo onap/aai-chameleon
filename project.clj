@@ -1,5 +1,6 @@
 (defproject chameleon "0.1.0"
   :dependencies [[org.clojure/clojure "1.9.0"]
+                 [org.clojure/core.async "0.4.474"]
                  [com.7theta/utilis "1.0.4"]
                  [http-kit "2.2.0"]
                  [ring/ring-core "1.6.3"]
@@ -12,7 +13,8 @@
                  [clj-time "0.14.2"]
                  [integrant "0.6.2"]
                  [yogthos/config "0.9"]
-                 [org.onap.aai.event-client/event-client-dmaap "1.2.1"]
+                 [org.onap.aai.event-client/event-client-dmaap "1.3.0"]
+                 [org.onap.aai.event-client/event-client-kafka "1.3.0"]
                  [org.onap.aai.logging-service/common-logging "1.2.2"]
                  [camel-snake-kebab "0.4.0"]
                  [metosin/ring-http-response "0.9.0"]
@@ -58,4 +60,13 @@
                                              [:mainClass "chameleon.server"]]])
                   :executions ([:execution [:id "assemble"]
                                 [:phase "package"]
-                                [:goals ([:goal "single"])]])}]])
+                                [:goals ([:goal "single"])]])}]
+                [com.spotify/dockerfile-maven-plugin "1.4.4"
+                 {:configuration ([:tag "latest"]
+                                  [:repository "${docker.push.registry}/onap/chameleon"]
+                                  [:verbose true]
+                                  [:serverId "docker-hub"])
+                  :executions ([:execution [:id "default"]
+                                [:goals ([:goal "build"]
+                                         [:goal "push"]
+                                         [:goal "tag"])]])}]])

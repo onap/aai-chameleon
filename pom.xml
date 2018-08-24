@@ -7,9 +7,7 @@
   <name>chameleon</name>
   <description/>
   <scm>
-    <tag>36b5671af2c3eec5ca81663382c4ca2898f79e55
-</tag>
-    <url/>
+    <tag>33595bcc69c84291645bd60cc15bddea1255e298</tag>
   </scm>
   <build>
     <sourceDirectory>src</sourceDirectory>
@@ -102,6 +100,27 @@
         </executions>
       </plugin>
       <plugin>
+        <groupId>com.spotify</groupId>
+        <artifactId>dockerfile-maven-plugin</artifactId>
+        <version>1.4.4</version>
+        <configuration>
+          <tag>latest</tag>
+          <repository>${docker.push.registry}/onap/chameleon</repository>
+          <verbose>true</verbose>
+          <serverId>docker-hub</serverId>
+        </configuration>
+        <executions>
+          <execution>
+            <id>default</id>
+            <goals>
+              <goal>build</goal>
+              <goal>push</goal>
+              <goal>tag</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>build-helper-maven-plugin</artifactId>
         <version>1.7</version>
@@ -136,7 +155,7 @@
     </repository>
     <repository>
       <id>clojars</id>
-      <url>https://clojars.org/repo/</url>
+      <url>https://repo.clojars.org/</url>
       <snapshots>
         <enabled>true</enabled>
       </snapshots>
@@ -193,6 +212,11 @@
       <groupId>org.clojure</groupId>
       <artifactId>clojure</artifactId>
       <version>1.9.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.clojure</groupId>
+      <artifactId>core.async</artifactId>
+      <version>0.4.474</version>
     </dependency>
     <dependency>
       <groupId>com.7theta</groupId>
@@ -257,7 +281,12 @@
     <dependency>
       <groupId>org.onap.aai.event-client</groupId>
       <artifactId>event-client-dmaap</artifactId>
-      <version>1.2.1</version>
+      <version>1.3.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.onap.aai.event-client</groupId>
+      <artifactId>event-client-kafka</artifactId>
+      <version>1.3.0</version>
     </dependency>
     <dependency>
       <groupId>org.onap.aai.logging-service</groupId>

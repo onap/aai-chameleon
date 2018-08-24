@@ -67,5 +67,5 @@
 ;; Logger specs
 (s/def ::logger (s/spec log/logger? :gen #(gen/return (log/error-logger "chameleon.specs"))))
 (s/def ::loggers (s/cat :e :chameleon.specs/logger :a :chameleon.specs/logger))
-(s/def :logging/msgs (s/* ::string))
+(s/def :logging/msgs (s/* string?))
 (s/def :logging/valid-fields log/valid-logfields?)

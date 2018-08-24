@@ -76,7 +76,10 @@
                                           :chameleon.specs/logger logger)]
     (if (empty? confirmed-specs)
       (.info logger (string->enum enum) (logfields fields) (into-array java.lang.String msgs))
-      confirmed-specs)))
+      (.info logger (string->enum "ERROR") (logfields fields) (->> confirmed-specs
+                                                                   (into ["SPEC ERROR"])
+                                                                   (mapv str)
+                                                                   (into-array java.lang.String))))))
 
 (defn debug
   [^AaiLoggerAdapter logger ^String enum  msgs]
