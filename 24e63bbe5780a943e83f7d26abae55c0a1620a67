@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a76adc5_74a61855",
+        "filename": "project.clj",
+        "patchSetId": 1
+      },
+      "lineNbr": 17,
+      "author": {
+        "id": 347
+      },
+      "writtenOn": "2018-08-27T12:15:24Z",
+      "side": 1,
+      "message": "I think the event client versions should be aligned",
+      "revId": "24e63bbe5780a943e83f7d26abae55c0a1620a67",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
