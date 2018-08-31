@@ -26,6 +26,10 @@
                  ["onap-staging" {:url "https://nexus.onap.org/content/repositories/staging/"}]
                  ["onap-snapshot" {:url "https://nexus.onap.org/content/repositories/snapshots/"}]]
   :min-lein-version "2.5.3"
+  :pom-addition [:distributionManagement [:repository [:id "onap-releases"]
+                                          [:url "https://nexus.onap.org/content/repositories/releases/"]]
+                 [:snapshotRepository [:id "onap-snapshot"]
+                  [:url "https://nexus.onap.org/content/repositories/snapshots/"]]]
   :profiles {:dev {:source-paths ["dev"]
                    :dependencies [[ring/ring-devel "1.6.3"]
                                   [integrant/repl "0.2.0"]]}
@@ -66,7 +70,4 @@
                                   [:repository "${docker.push.registry}/onap/chameleon"]
                                   [:verbose true]
                                   [:serverId "docker-hub"])
-                  :executions ([:execution [:id "default"]
-                                [:goals ([:goal "build"]
-                                         [:goal "push"]
-                                         [:goal "tag"])]])}]])
+                  :executions ([:execution [:id "default"]])}]])
