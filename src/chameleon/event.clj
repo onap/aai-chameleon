@@ -39,9 +39,9 @@
   [event-config gallifrey-host loggers]
   (let [{:keys [topic consumer-group processor kafka-config]} (:aai event-config)
         [error-logger audit-logger] loggers
-        kfc (ck/clj-kafka-consumer kafka-config consumer-group topic)
+        kfc (ck/clj-kafka-consumer kafka-config consumer-group topic error-logger)
         chan (ca/chan 5)
-        error-chan (ck/subscribe kfc chan 30000 "Polling-Kafka-Thread")]
+        error-chan (ck/subscribe kfc chan 30000 "Polling-Kafka-Thread" error-logger)]
     (log/info error-logger "EVENT_PROCESSOR"
               [(format "AAI created. Starting polling a KAFKA Topic '%s' on '%s'" topic (kafka-config "bootstrap.servers"))])
     (ca/go-loop []

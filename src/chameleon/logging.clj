@@ -3,7 +3,8 @@
             [camel-snake-kebab.extras :refer [transform-keys]]
             [clojure.java.io :as io]
             [integrant.core :as ig]
-            [clojure.spec.alpha :as s])
+            [clojure.spec.alpha :as s]
+            [chameleon.core :as core])
   (:import [org.onap.aai.cl.api Logger LogFields LogLine]
            [org.onap.aai.cl.eelf LoggerFactory LogMessageEnum AaiLoggerAdapter AuditLogLine]
            [org.onap.aai.cl.mdc MdcContext MdcOverride]
@@ -19,17 +20,6 @@
   (System/setProperty "logback.configurationFile" logback)
   (EELFResourceManager/loadMessageBundle logmsgs)
   [(error-logger "chameleon.loggging") (audit-logger "chameleon.loggging")])
-
-(defn conform-multiple
-  [& spec-form-pair]
-  (if (s/valid? :chameleon.specs/spec-form-pair spec-form-pair)
-    (->> spec-form-pair
-         (partition 2)
-         (map (fn [[sp form]]
-                (when (s/invalid? (s/conform sp form))
-                  (s/explain-data sp form))))
-         (remove nil?))
-    (s/explain-data :chameleon.specs/spec-form-pair spec-form-pair)))
 
 (defn mdc-set!
   "Sets the global MDC context for the current thread."
@@ -72,8 +62,8 @@
 
 (defn info
   [^AaiLoggerAdapter logger ^String enum msgs & {:keys [fields] :or {fields {}}}]
-  (let [confirmed-specs (conform-multiple :logging/valid-fields fields :logging/msgs msgs
-                                          :chameleon.specs/logger logger)]
+  (let [confirmed-specs (core/conform-multiple :logging/valid-fields fields :logging/msgs msgs
+                                               :chameleon.specs/logger logger)]
     (if (empty? confirmed-specs)
       (.info logger (string->enum enum) (logfields fields) (into-array java.lang.String msgs))
       (.info logger (string->enum "ERROR") (logfields fields) (->> confirmed-specs
