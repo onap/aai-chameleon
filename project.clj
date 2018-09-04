@@ -1,4 +1,4 @@
-(defproject chameleon "0.1.0"
+(defproject chameleon "1.3.0-SNAPSHOT"
   :dependencies [[org.clojure/clojure "1.9.0"]
                  [org.clojure/core.async "0.4.474"]
                  [com.7theta/utilis "1.0.4"]

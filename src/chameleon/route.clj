@@ -19,34 +19,34 @@
 (defn assert-create!
   "Creates an entity in Gallifrey with an initial set of assertions coming from the provided payload"
   [host actor type key payload & [time-dimensions]]
-  (kitclient/request {:url (str "https://" host "/" type "/" key)
-                      :method :put
-                      :query-params (into {"actor" actor "create" "true"} time-dimensions)
-                      :body payload
-                      :insecure? true
-                      :keepalive 300
-                      :timeout 1000}))
+  @(kitclient/request {:url (str "https://" host "/" type "/" key)
+                       :method :put
+                       :query-params (into {"actor" actor "create" "true"} time-dimensions)
+                       :body payload
+                       :insecure? true
+                       :keepalive 300
+                       :timeout 1000}))
 
 (defn assert-update!
   "Update an entity in Gallifrey with a set of assertions coming from the provided payload"
   [host actor type key payload & [time-dimensions]]
-  (kitclient/request {:url (str "https://" host "/" type "/" key)
-                      :method :put
-                      :query-params (into  {"actor" actor "changes-only" "true"} time-dimensions)
-                      :body payload
-                      :insecure? true
-                      :keepalive 300
-                      :timeout 1000}))
+  @(kitclient/request {:url (str "https://" host "/" type "/" key)
+                       :method :put
+                       :query-params (into  {"actor" actor "changes-only" "true"} time-dimensions)
+                       :body payload
+                       :insecure? true
+                       :keepalive 300
+                       :timeout 1000}))
 
 (defn assert-delete!
   "Assert a deletion for an entity in Gallifrey based on the provided key."
   [host actor type key & [time-dimensions]]
-  (kitclient/request {:url (str "https://" host "/" type "/" key)
-                      :method :delete
-                      :query-params (into {"actor" actor} time-dimensions)
-                      :insecure? true
-                      :keepalive 300
-                      :timeout 1000}))
+  @(kitclient/request {:url (str "https://" host "/" type "/" key)
+                       :method :delete
+                       :query-params (into {"actor" actor} time-dimensions)
+                       :insecure? true
+                       :keepalive 300
+                       :timeout 1000}))
 
 (defn assert-gallifrey!
   [host actor type payload & [e-logger a-logger]]
@@ -58,7 +58,7 @@
                    "CREATE" (assert-create! host actor type key body time)
                    "UPDATE" (assert-update! host actor type key body time)
                    "DELETE" (assert-delete! host actor type key time))
-        {:keys [status body]} @g-assert]
+        {:keys [status body]} g-assert]
     (log/info e-logger "RESPONSE" (mapv str [operation key status body]))
     (if (and (>= status 200) (<= status 299))
       (log/info e-logger "GALLIFREY_ASSERTED" ["SUCCEEDED" (str type) (str key)])
