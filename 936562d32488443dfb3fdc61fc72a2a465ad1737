@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a76adc5_f7f1a101",
+        "filename": "Dockerfile",
+        "patchSetId": 2
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1029
+      },
+      "writtenOn": "2018-09-04T18:32:50Z",
+      "side": 1,
+      "message": "This will need to change to \nCOPY  target/chameleon-1.3.0-SNAPSHOT-jar-with-dependencies.jar /opt/chameleon/chameleon.jar",
+      "revId": "936562d32488443dfb3fdc61fc72a2a465ad1737",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
