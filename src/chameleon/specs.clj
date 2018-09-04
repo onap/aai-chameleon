@@ -3,12 +3,17 @@
             [chameleon.logging :as log]
             [clojure.spec.gen.alpha :as gen]
             [cheshire.core :as c]
-            [clojure.string :as str]))
+            [clojure.core.async :as ca]
+            [clojure.string :as str]
+            [cheshire.core :as json])
+  (:import [org.apache.kafka.clients.consumer ConsumerRecord]
+           [java.util Properties]))
 
 (s/def ::host string?)
 (s/def ::provenance string?)
 (s/def ::payload map?)
 (s/def ::string (s/spec (s/and string? (complement str/blank?)) :gen gen/string-alphanumeric))
+(s/def ::int (s/spec (s/and int? #(< 0 %) #(> 999999999 %))))
 (s/def ::type (s/spec ::string :gen #(gen/elements ["vserver" "pserver" "generic-vnf"])))
 (s/def ::id uuid?)
 (s/def ::source (s/keys :req-un [::type ::id]))
@@ -38,25 +43,24 @@
                                      :spike/operation :spike/timestamp]))
 (s/def :spike/payload (s/spec string? :gen #(gen/fmap (partial c/generate-string)
                                                       (s/gen :spike/event))))
-(s/def :gallifrey/k-end-actor ::string)
 
 ;; gallifrey response
-(s/def :gallifrey/k-start-actor ::string)
-(s/def :gallifrey/k-end inst?)
-(s/def :gallifrey/k-start inst?)
-(s/def :gallifrey/history (s/keys :req-un [:gallifrey/k-end-actor :gallifrey/k-end
-                                           :gallifrey/k-start-actor :gallifrey/k-start]))
 (s/def :relationship/_meta (s/map-of ::string :gallifrey/history))
 (s/def :relationship/_type (s/spec string? :gen #(gen/return "relationship")))
-(s/def :gallifrey/_type (s/spec ::string :gen #(gen/return "entity")))
-(s/def :gallifrey/properties (s/keys :req-un [:gallifrey/_type ::type]))
-(s/def :relationship/type (s/spec string? :gen #(->> (gen/string-alphanumeric)
-                                                     (gen/such-that (complement str/blank?))
+(s/def :relationship/type (s/spec string? :gen #(->> (s/gen ::string)
                                                      (gen/fmap (partial str "tosca.relationship.")))))
 (s/def :relationship/properties (s/keys :req-un [:relationship/_type :relationship/type]))
 (s/def ::relationship (s/keys :req-un [:relationship/properties ::source
                                        ::target :relationship/_meta ::_id]))
 (s/def ::relationships (s/coll-of ::relationship :gen-max 8))
+(s/def :gallifrey/k-start-actor ::string)
+(s/def :gallifrey/k-end inst?)
+(s/def :gallifrey/k-start inst?)
+(s/def :gallifrey/k-end-actor ::string)
+(s/def :gallifrey/history (s/keys :req-un [:gallifrey/k-start-actor :gallifrey/k-start]
+                                  :opt [:gallifrey/k-end-actor :gallifrey/k-end]))
+(s/def :gallifrey/_type (s/spec ::string :gen #(gen/return "entity")))
+(s/def :gallifrey/properties (s/keys :req-un [:gallifrey/_type ::type]))
 (s/def :gallifrey/payload (s/spec map?
                                   :gen #(->> [::_id :gallifrey/properties
                                               :gallifrey/properties ::relationships]
@@ -64,8 +68,49 @@
                                              s/gen
                                              (gen/fmap (partial clojure.walk/stringify-keys)))))
 
+(s/def :gallifrey/response (s/spec ::string))
+
+
+;; REST Requests
+
+(s/def :route/response (s/spec #(instance? clojure.lang.IDeref %) :gen (fn [] (->> (s/gen ::string)
+                                                                                  (gen/fmap #(future %))))))
+
+(s/def :stubbed/gallifrey-response
+  (s/spec string?))
+
 ;; Logger specs
 (s/def ::logger (s/spec log/logger? :gen #(gen/return (log/error-logger "chameleon.specs"))))
 (s/def ::loggers (s/cat :e :chameleon.specs/logger :a :chameleon.specs/logger))
 (s/def :logging/msgs (s/* string?))
 (s/def :logging/valid-fields log/valid-logfields?)
+
+;; Kafka Specs
+(defn channel?
+  [x]
+  (and (satisfies? clojure.core.async.impl.protocols/Channel x)
+       (satisfies? clojure.core.async.impl.protocols/WritePort x)
+       (satisfies? clojure.core.async.impl.protocols/ReadPort x)))
+
+(s/def :kafka/config (s/map-of ::string ::string))
+(s/def :kafka/timeout ::int)
+(s/def :kafka/chan (s/spec channel? :gen #(gen/return (ca/chan))))
+(s/def :kafka/topic ::string)
+(s/def :kafka/partition ::int)
+(s/def :kafka/offset ::int)
+(s/def :kafka/key ::string)
+(s/def :kafka/value ::string)
+
+(s/def :kafka/consumer-record (s/spec #(instance?  ConsumerRecord %)
+                                      :gen (fn [] (->> (s/cat :topic :kafka/topic
+                                                             :partition :kafka/partition
+                                                             :offset :kafka/offset
+                                                             :key :kafka/key
+                                                             :value :kafka/value)
+                                                      s/gen
+                                                      (gen/fmap (fn [[topic partition offset key value]]
+                                                                  (ConsumerRecord. topic partition offset key value)))))))
+
+(s/def :kafka/clojure-consumer-record (s/spec (s/keys :req-un [:kafka/topic :kafka/partition
+                                                               :kafka/offset :kafka/key :kafka/value])))
+(s/def :kafka/properties (s/spec #(instance? Properties %) :gen #(s/tuple keyword? ::string)))
