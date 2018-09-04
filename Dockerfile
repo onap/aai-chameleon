@@ -42,4 +42,4 @@ RUN chmod 700 /docker-entrypoint.sh
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
 RUN mkdir -p /opt/chameleon
-COPY  target/chameleon-0.1.0-jar-with-dependencies.jar /opt/chameleon
+COPY target/chameleon-*-jar-with-dependencies.jar /opt/chameleon
