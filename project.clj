@@ -1,4 +1,5 @@
-(defproject chameleon "1.3.0-SNAPSHOT"
+(defproject org.onap.aai/chameleon "1.3.0-SNAPSHOT"
+  :name "chameleon"
   :dependencies [[org.clojure/clojure "1.9.0"]
                  [org.clojure/core.async "0.4.474"]
                  [com.7theta/utilis "1.0.4"]
@@ -23,12 +24,17 @@
   :plugins [[lein-cloverage "1.0.10"]]
   :repositories [["onap-releases" {:url "https://nexus.onap.org/content/repositories/releases/"}]
                  ["onap-public" {:url "https://nexus.onap.org/content/repositories/public/"}]
-                 ["onap-staging" {:url "https://nexus.onap.org/content/repositories/staging/"}]
-                 ["onap-snapshot" {:url "https://nexus.onap.org/content/repositories/snapshots/"}]]
+                 ["ecomp-staging" {:name "ECOMP Staging Repository" :url "https://nexus.onap.org/content/repositories/staging/"}]
+                 ["ecomp-snapshots" {:name "ECOMP Snapshot Repository" :url "https://nexus.onap.org/content/repositories/snapshots/"}]]
   :min-lein-version "2.5.3"
-  :pom-addition [:distributionManagement [:repository [:id "onap-releases"]
-                                          [:url "https://nexus.onap.org/content/repositories/releases/"]]
-                 [:snapshotRepository [:id "onap-snapshot"]
+  :pom-addition [:distributionManagement
+                 [:repository
+                  [:id "ecomp-releases"]
+                  [:name "ECOMP Release Repository"]
+                  [:url "https://nexus.onap.org/content/repositories/releases/"]]
+                 [:snapshotRepository
+                  [:id "ecomp-snapshot"]
+                  [:name "ECOMP Snapshot Repository"]
                   [:url "https://nexus.onap.org/content/repositories/snapshots/"]]]
   :profiles {:dev {:source-paths ["dev"]
                    :dependencies [[ring/ring-devel "1.6.3"]
@@ -65,6 +71,11 @@
                   :executions ([:execution [:id "assemble"]
                                 [:phase "package"]
                                 [:goals ([:goal "single"])]])}]
+                [org.sonatype.plugins/nexus-staging-maven-plugin "1.6.7"
+                 {:extensions true
+                  :configuration ([:nexusUrl "https://nexus.onap.org"]
+                                  [:stagingProfileId "176c31dfe190a"]
+                                  [:serverId "ecomp-staging"])}]
                 [com.spotify/dockerfile-maven-plugin "1.4.4"
                  {:configuration ([:tag "latest"]
                                   [:repository "${docker.push.registry}/onap/chameleon"]

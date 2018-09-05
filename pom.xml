@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>chameleon</groupId>
+  <groupId>org.onap.aai</groupId>
   <artifactId>chameleon</artifactId>
   <packaging>jar</packaging>
   <version>1.3.0-SNAPSHOT</version>
-  <name>chameleon</name>
+  <name>aai-chameleon</name>
   <description/>
   <scm>
-    <tag>1586036fd345c240982237b76469a1f5d04d122d</tag>
+    <tag>934764b1ae39555f22bae124bc41c7cab67503bd</tag>
   </scm>
   <build>
     <sourceDirectory>src</sourceDirectory>
@@ -100,6 +100,17 @@
         </executions>
       </plugin>
       <plugin>
+        <groupId>org.sonatype.plugins</groupId>
+        <artifactId>nexus-staging-maven-plugin</artifactId>
+        <version>1.6.7</version>
+        <extensions>true</extensions>
+        <configuration>
+          <nexusUrl>https://nexus.onap.org</nexusUrl>
+          <stagingProfileId>176c31dfe190a</stagingProfileId>
+          <serverId>ecomp-staging</serverId>
+        </configuration>
+      </plugin>
+      <plugin>
         <groupId>com.spotify</groupId>
         <artifactId>dockerfile-maven-plugin</artifactId>
         <version>1.4.4</version>
@@ -179,7 +190,7 @@
       </releases>
     </repository>
     <repository>
-      <id>onap-staging</id>
+      <id>ecomp-staging</id>
       <url>https://nexus.onap.org/content/repositories/staging/</url>
       <snapshots>
         <enabled>true</enabled>
@@ -189,7 +200,7 @@
       </releases>
     </repository>
     <repository>
-      <id>onap-snapshot</id>
+      <id>ecomp-snapshots</id>
       <url>https://nexus.onap.org/content/repositories/snapshots/</url>
       <snapshots>
         <enabled>true</enabled>
@@ -323,11 +334,13 @@
   </dependencies>
   <distributionManagement>
     <repository>
-      <id>onap-releases</id>
+      <id>ecomp-releases</id>
+      <name>ECOMP Release Repository</name>
       <url>https://nexus.onap.org/content/repositories/releases/</url>
     </repository>
     <snapshotRepository>
-      <id>onap-snapshot</id>
+      <id>ecomp-snapshot</id>
+      <name>ECOMP Snapshot Repository</name>
       <url>https://nexus.onap.org/content/repositories/snapshots/</url>
     </snapshotRepository>
   </distributionManagement>
