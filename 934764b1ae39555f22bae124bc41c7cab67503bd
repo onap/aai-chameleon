@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a76adc5_b0a7aa4f",
+        "filename": "pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 481
+      },
+      "writtenOn": "2018-09-05T21:21:04Z",
+      "side": 1,
+      "message": "This does not to be same ad the groupID. \n\nThe artifactId should be the name of your artifact. This can be \"chameleon\" or any other name the team wants.\n\nJust remember that in Nexus, the path of the binaries will be formed by \"groupId/artifactId\". \n\nAs long as the final path matches org/onap/aai/chameleon/* we should be fine.\n\nIf your artifact name is \"chameleon\" then i think you can do this:\n\u003cgroupId\u003eorg.onap.aai\u003c/groupId\u003e\n\u003cartifactId\u003echameleon\u003c/artifactId\u003e",
+      "range": {
+        "startLine": 4,
+        "startChar": 2,
+        "endLine": 4,
+        "endChar": 49
+      },
+      "revId": "934764b1ae39555f22bae124bc41c7cab67503bd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a76adc5_d0a4a64c",
+        "filename": "pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 481
+      },
+      "writtenOn": "2018-09-05T21:21:04Z",
+      "side": 1,
+      "message": "This is the name for the Sonar reports.. \nLets change this to \"aai-chameleon\"",
+      "range": {
+        "startLine": 7,
+        "startChar": 2,
+        "endLine": 7,
+        "endChar": 37
+      },
+      "revId": "934764b1ae39555f22bae124bc41c7cab67503bd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a76adc5_906aaeec",
+        "filename": "pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 481
+      },
+      "writtenOn": "2018-09-05T21:21:04Z",
+      "side": 1,
+      "message": "You need to define this in the pom:\n\n\u003conap.nexus.url\u003ehttps://nexus.onap.org\u003c/onap.nexus.url\u003e",
+      "range": {
+        "startLine": 108,
+        "startChar": 10,
+        "endLine": 108,
+        "endChar": 48
+      },
+      "revId": "934764b1ae39555f22bae124bc41c7cab67503bd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
