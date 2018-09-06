@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "1a76adc5_4110ca58",
+        "filename": "pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 347
+      },
+      "writtenOn": "2018-09-06T13:37:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a76adc5_b0a7aa4f",
+      "range": {
+        "startLine": 4,
+        "startChar": 2,
+        "endLine": 4,
+        "endChar": 49
+      },
+      "revId": "934764b1ae39555f22bae124bc41c7cab67503bd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a76adc5_d0a4a64c",
         "filename": "pom.xml",
         "patchSetId": 1
@@ -48,6 +72,30 @@
     },
     {
       "key": {
+        "uuid": "1a76adc5_6115c647",
+        "filename": "pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 347
+      },
+      "writtenOn": "2018-09-06T13:37:24Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "1a76adc5_d0a4a64c",
+      "range": {
+        "startLine": 7,
+        "startChar": 2,
+        "endLine": 7,
+        "endChar": 37
+      },
+      "revId": "934764b1ae39555f22bae124bc41c7cab67503bd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "1a76adc5_906aaeec",
         "filename": "pom.xml",
         "patchSetId": 1
@@ -59,6 +107,30 @@
       "writtenOn": "2018-09-05T21:21:04Z",
       "side": 1,
       "message": "You need to define this in the pom:\n\n\u003conap.nexus.url\u003ehttps://nexus.onap.org\u003c/onap.nexus.url\u003e",
+      "range": {
+        "startLine": 108,
+        "startChar": 10,
+        "endLine": 108,
+        "endChar": 48
+      },
+      "revId": "934764b1ae39555f22bae124bc41c7cab67503bd",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a76adc5_a19c3e10",
+        "filename": "pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 347
+      },
+      "writtenOn": "2018-09-06T13:37:24Z",
+      "side": 1,
+      "message": "Ah!  I thought this was inherited by a parent pom.  This pom file is generated, so I\u0027ll fall back to using the URL directly rather than use the indirection.",
+      "parentUuid": "1a76adc5_906aaeec",
       "range": {
         "startLine": 108,
         "startChar": 10,
