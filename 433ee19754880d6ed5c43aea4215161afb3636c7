@@ -22,6 +22,30 @@
       "revId": "433ee19754880d6ed5c43aea4215161afb3636c7",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "1a76adc5_b5c22f51",
+        "filename": "pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 347
+      },
+      "writtenOn": "2018-09-07T20:50:01Z",
+      "side": 1,
+      "message": "My mistake.  Will fix",
+      "parentUuid": "1a76adc5_35b7fff6",
+      "range": {
+        "startLine": 7,
+        "startChar": 0,
+        "endLine": 7,
+        "endChar": 24
+      },
+      "revId": "433ee19754880d6ed5c43aea4215161afb3636c7",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
