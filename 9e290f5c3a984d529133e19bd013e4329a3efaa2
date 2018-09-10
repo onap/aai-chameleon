@@ -1,0 +1,9 @@
+Verified+1: ONAP Jobbuilder <onap-jobbuilder@jenkins.onap.org>
+Code-Review+1: Jessica Wagantall <jwagantall@linuxfoundation.org>
+Code-Review+1: Shwetank Dave <shwetank.dave@amdocs.com>
+Code-Review+2: Steven Blimkie <Steven.Blimkie@amdocs.com>
+Submitted-by: Steven Blimkie <Steven.Blimkie@amdocs.com>
+Submitted-at: Mon, 10 Sep 2018 14:14:28 +0000
+Reviewed-on: https://gerrit.onap.org/r/65307
+Project: aai/chameleon
+Branch: refs/heads/master
