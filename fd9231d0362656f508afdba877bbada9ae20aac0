@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a76adc5_ab5c014c",
+        "filename": "pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 481
+      },
+      "writtenOn": "2018-09-11T22:21:27Z",
+      "side": 1,
+      "message": "This should also be creating a directory like\norg/onap/aai/chameleon which is an accepted pattern \nThis should be a good change",
+      "range": {
+        "startLine": 3,
+        "startChar": 0,
+        "endLine": 4,
+        "endChar": 36
+      },
+      "revId": "fd9231d0362656f508afdba877bbada9ae20aac0",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
