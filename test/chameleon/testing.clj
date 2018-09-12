@@ -9,8 +9,8 @@
              [chameleon.aai-processor :as cai]
              [chameleon.config :as cc]
              [integrant.core :as ic]
-             [integrant.core :as ig])
-  (:import [chameleon.kafka CljKafkaConsumer]))
+             [integrant.core :as ig]
+             [chameleon.aai-processor]))
 
 ;; STUBS
 (s/fdef chameleon.route/assert-gallifrey!
@@ -72,7 +72,7 @@
 (s/fdef chameleon.kafka/clj-kafka-consumer
   :args (s/cat :config :kafka/config :group-id :chameleon.specs/string
                :topic :chameleon.specs/string :logger :chameleon.specs/logger)
-  :ret #(instance? CljKafkaConsumer %))
+  :ret :kafka/consumer)
 
 (s/fdef chameleon.kafka/consumer-record->clojure
   :args (s/cat :consumer-record :kafka/consumer-record)

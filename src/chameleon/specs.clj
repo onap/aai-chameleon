@@ -5,7 +5,8 @@
             [cheshire.core :as c]
             [clojure.core.async :as ca]
             [clojure.string :as str]
-            [cheshire.core :as json])
+            [cheshire.core :as json]
+            [chameleon.kafka :as ck])
   (:import [org.apache.kafka.clients.consumer ConsumerRecord]
            [java.util Properties]))
 
@@ -114,3 +115,11 @@
 (s/def :kafka/clojure-consumer-record (s/spec (s/keys :req-un [:kafka/topic :kafka/partition
                                                                :kafka/offset :kafka/key :kafka/value])))
 (s/def :kafka/properties (s/spec #(instance? Properties %) :gen #(s/tuple keyword? ::string)))
+(s/def :kafka/consumer  (s/spec ck/clj-kafka-comsumer? :gen #(->> (s/cat :config :kafka/config
+                                                                         :group-id ::string
+                                                                         :topic :kafka/topic
+                                                                         :logger ::logger)
+                                                                  s/gen
+                                                                  (gen/fmap (fn [[config group-id topic logger]]
+                                                                              (println [config group-id topic logger])
+                                                                              (ck/clj-kafka-consumer config group-id topic logger))))))

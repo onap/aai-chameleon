@@ -36,6 +36,10 @@
                                           (into ["SPEC ERROR"])
                                           (mapv str))))))
 
+(defn clj-kafka-comsumer?
+  [consumer]
+  (instance? CljKafkaConsumer consumer))
+
 (defn subscribe
   "Given a CljKafkaConsumer, a channel, and a session timeout (in
   ms), return a channel.  The input channel is where the messages will
