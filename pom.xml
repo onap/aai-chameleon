@@ -3,11 +3,11 @@
   <groupId>org.onap.aai</groupId>
   <artifactId>chameleon</artifactId>
   <packaging>jar</packaging>
-  <version>1.3.0-SNAPSHOT.</version>
+  <version>1.3.0-SNAPSHOT</version>
   <name>aai-chameleon</name>
   <description/>
   <scm>
-    <tag>9e290f5c3a984d529133e19bd013e4329a3efaa2</tag>
+    <tag>220e170103ae5711addcfd84f597fc06a5e3aaca</tag>
   </scm>
   <build>
     <sourceDirectory>src</sourceDirectory>
@@ -77,24 +77,13 @@
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-assembly-plugin</artifactId>
-        <version>2.4.1</version>
-        <configuration>
-          <descriptorRefs>
-            <descriptorRef>jar-with-dependencies</descriptorRef>
-          </descriptorRefs>
-          <archive>
-            <manifest>
-              <mainClass>chameleon.server</mainClass>
-            </manifest>
-          </archive>
-        </configuration>
+        <artifactId>maven-shade-plugin</artifactId>
+        <version>3.2.0</version>
         <executions>
           <execution>
-            <id>assemble</id>
             <phase>package</phase>
             <goals>
-              <goal>single</goal>
+              <goal>shade</goal>
             </goals>
           </execution>
         </executions>

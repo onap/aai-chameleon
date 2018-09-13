@@ -1,4 +1,4 @@
-(defproject org.onap.aai/chameleon "1.3.0-SNAPSHOT."
+(defproject org.onap.aai/chameleon "1.3.0-SNAPSHOT"
   :name "chameleon"
   :dependencies [[org.clojure/clojure "1.9.0"]
                  [org.clojure/core.async "0.4.474"]
@@ -64,13 +64,10 @@
                  {:executions ([:execution [:id "copy-dependencies"]
                                 [:goals ([:goal "copy-dependencies"])]
                                 [:phase "package"]])}]
-                [org.apache.maven.plugins/maven-assembly-plugin "2.4.1"
-                 {:configuration ([:descriptorRefs [:descriptorRef "jar-with-dependencies"]]
-                                  [:archive [:manifest
-                                             [:mainClass "chameleon.server"]]])
-                  :executions ([:execution [:id "assemble"]
+                [org.apache.maven.plugins/maven-shade-plugin "3.2.0"
+                 {:executions ([:execution
                                 [:phase "package"]
-                                [:goals ([:goal "single"])]])}]
+                                [:goals ([:goal "shade"])]])}]
                 [org.sonatype.plugins/nexus-staging-maven-plugin "1.6.7"
                  {:extensions true
                   :configuration ([:nexusUrl "https://nexus.onap.org"]
