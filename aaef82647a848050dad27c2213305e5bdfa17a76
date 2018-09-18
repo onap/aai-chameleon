@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a76adc5_3e756963",
+        "filename": "pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 347
+      },
+      "writtenOn": "2018-09-18T14:07:55Z",
+      "side": 1,
+      "message": "I don\u0027t want to see this merged ONLY because pom.xml is a derived artifact in this project (from project.clj), so the changes will be clobbered by the next PR.\n\nThat said, the changes look worthwhile.  I\u0027m going to try and make the appropriate edits to project.clj to achieve the effect shown here, and will push up a subsequent PR intended to replace this one, if that\u0027s okay.  Alternatively, let me know if it\u0027s possible to update someone else\u0027s PR - I don\u0027t think it is.\n\n(TLDR; -1, but with the hope that imitation is the sincerest form of flattery.)",
+      "revId": "aaef82647a848050dad27c2213305e5bdfa17a76",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
