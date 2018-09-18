@@ -24,6 +24,7 @@
     </testResources>
     <directory>target</directory>
     <outputDirectory>target/classes</outputDirectory>
+    <pluginManagement>
     <plugins>
       <plugin>
         <groupId>com.theoryinpractise</groupId>
@@ -123,72 +124,9 @@
         </executions>
       </plugin>
     </plugins>
+    </pluginManagement>
   </build>
-  <repositories>
-    <repository>
-      <id>central</id>
-      <url>https://repo1.maven.org/maven2/</url>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-      <releases>
-        <enabled>true</enabled>
-      </releases>
-    </repository>
-    <repository>
-      <id>clojars</id>
-      <url>https://repo.clojars.org/</url>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-      <releases>
-        <enabled>true</enabled>
-      </releases>
-    </repository>
-    <repository>
-      <id>onap-releases</id>
-      <url>https://nexus.onap.org/content/repositories/releases/</url>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-      <releases>
-        <enabled>true</enabled>
-      </releases>
-    </repository>
-    <repository>
-      <id>onap-public</id>
-      <url>https://nexus.onap.org/content/repositories/public/</url>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-      <releases>
-        <enabled>true</enabled>
-      </releases>
-    </repository>
-    <repository>
-      <id>ecomp-staging</id>
-      <url>https://nexus.onap.org/content/repositories/staging/</url>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-      <releases>
-        <enabled>true</enabled>
-      </releases>
-    </repository>
-    <repository>
-      <id>ecomp-snapshots</id>
-      <url>https://nexus.onap.org/content/repositories/snapshots/</url>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-      <releases>
-        <enabled>true</enabled>
-      </releases>
-    </repository>
-  </repositories>
   <dependencyManagement>
-    <dependencies/>
-  </dependencyManagement>
   <dependencies>
     <dependency>
       <groupId>org.clojure</groupId>
@@ -308,6 +246,7 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+  </dependencyManagement>
   <distributionManagement>
     <repository>
       <id>ecomp-releases</id>
