@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "1a76adc5_febcd107",
+        "filename": "pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 257,
+      "author": {
+        "id": 347
+      },
+      "writtenOn": "2018-09-18T14:02:47Z",
+      "side": 1,
+      "message": "pom.xml is generated from project.clj, so we\u0027ll need a corresponding change - but I\u0027ve made it locally and will update it on my next put (and thus preserve the change here).  Would really like to try this change out and see if it fixes our build pipeline.  (+1)",
+      "revId": "9870252290217164f4349b93ac8a4f4238ad66cf",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
