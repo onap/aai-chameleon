@@ -7,7 +7,7 @@
   <name>aai-chameleon</name>
   <description/>
   <scm>
-    <tag>bc462e353ad91efce900a4bd19879a2e8496605e</tag>
+    <tag>a0aa3d2db20d0afc00b34c5db9fcac3b06299237</tag>
   </scm>
   <build>
     <sourceDirectory>src</sourceDirectory>
@@ -146,38 +146,18 @@
       </releases>
     </repository>
     <repository>
-      <id>onap-releases</id>
-      <url>https://nexus.onap.org/content/repositories/releases/</url>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-      <releases>
-        <enabled>true</enabled>
-      </releases>
-    </repository>
-    <repository>
-      <id>onap-public</id>
-      <url>https://nexus.onap.org/content/repositories/public/</url>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-      <releases>
-        <enabled>true</enabled>
-      </releases>
-    </repository>
-    <repository>
-      <id>ecomp-staging</id>
-      <url>https://nexus.onap.org/content/repositories/staging/</url>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-      <releases>
-        <enabled>true</enabled>
-      </releases>
-    </repository>
-    <repository>
       <id>ecomp-snapshots</id>
       <url>https://nexus.onap.org/content/repositories/snapshots/</url>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+    </repository>
+    <repository>
+      <id>onap-releases</id>
+      <url>https://nexus.onap.org/content/repositories/releases/</url>
       <snapshots>
         <enabled>true</enabled>
       </snapshots>

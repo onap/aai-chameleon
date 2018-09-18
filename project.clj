@@ -22,11 +22,9 @@
                  [org.clojure/test.check "0.9.0"]
                  [cloverage/cloverage "1.0.10"]]
   :plugins [[lein-cloverage "1.0.10"]]
-  :repositories [["onap-releases" {:url "https://nexus.onap.org/content/repositories/releases/"}]
-                 ["onap-public" {:url "https://nexus.onap.org/content/repositories/public/"}]
-                 ["ecomp-staging" {:name "ECOMP Staging Repository" :url "https://nexus.onap.org/content/repositories/staging/"}]
-                 ["ecomp-snapshots" {:name "ECOMP Snapshot Repository" :url "https://nexus.onap.org/content/repositories/snapshots/"}]]
   :min-lein-version "2.5.3"
+  :repositories [["ecomp-snapshots" {:name "ECOMP Snapshot Repository" :url "https://nexus.onap.org/content/repositories/snapshots/"}]
+                 ["onap-releases" {:url "https://nexus.onap.org/content/repositories/releases/"}]]
   :pom-addition [:distributionManagement
                  [:repository
                   [:id "ecomp-releases"]
