@@ -7,7 +7,7 @@
   <name>aai-chameleon</name>
   <description/>
   <scm>
-    <tag>2d27954676842e1562c18ec28ca4fb8c13899cb4</tag>
+    <tag>bc462e353ad91efce900a4bd19879a2e8496605e</tag>
   </scm>
   <build>
     <sourceDirectory>src</sourceDirectory>
@@ -315,7 +315,7 @@
       <url>https://nexus.onap.org/content/repositories/releases/</url>
     </repository>
     <snapshotRepository>
-      <id>ecomp-snapshot</id>
+      <id>ecomp-snapshots</id>
       <name>ECOMP Snapshot Repository</name>
       <url>https://nexus.onap.org/content/repositories/snapshots/</url>
     </snapshotRepository>

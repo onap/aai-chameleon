@@ -33,7 +33,7 @@
                   [:name "ECOMP Release Repository"]
                   [:url "https://nexus.onap.org/content/repositories/releases/"]]
                  [:snapshotRepository
-                  [:id "ecomp-snapshot"]
+                  [:id "ecomp-snapshots"]
                   [:name "ECOMP Snapshot Repository"]
                   [:url "https://nexus.onap.org/content/repositories/snapshots/"]]]
   :profiles {:dev {:source-paths ["dev"]
