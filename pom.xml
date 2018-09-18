@@ -7,7 +7,7 @@
   <name>aai-chameleon</name>
   <description/>
   <scm>
-    <tag>a0aa3d2db20d0afc00b34c5db9fcac3b06299237</tag>
+    <tag>0e3c742bec42615ac1576d07c8fa322512e4c215</tag>
   </scm>
   <build>
     <sourceDirectory>src</sourceDirectory>
@@ -72,6 +72,19 @@
               <goal>copy-dependencies</goal>
             </goals>
             <phase>package</phase>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-shade-plugin</artifactId>
+        <version>3.2.0</version>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>shade</goal>
+            </goals>
           </execution>
         </executions>
       </plugin>
