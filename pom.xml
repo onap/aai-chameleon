@@ -254,7 +254,7 @@
       <url>https://nexus.onap.org/content/repositories/releases/</url>
     </repository>
     <snapshotRepository>
-      <id>ecomp-snapshot</id>
+      <id>ecomp-snapshots</id>
       <name>ECOMP Snapshot Repository</name>
       <url>https://nexus.onap.org/content/repositories/snapshots/</url>
     </snapshotRepository>
