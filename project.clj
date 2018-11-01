@@ -1,4 +1,4 @@
-(defproject org.onap.aai/chameleon "1.3.0-SNAPSHOT"
+(defproject org.onap.aai/chameleon "1.3.1-SNAPSHOT"
   :name "chameleon"
   :dependencies [[org.clojure/clojure "1.9.0"]
                  [org.clojure/core.async "0.4.474"]
