@@ -54,10 +54,10 @@ Feeds the Gallifrey time database with entity events
 7. Make sure the configuration is correct in the dev.clj file and once
    verified, in the repl buffer type `(go)` and press enter.
 
-8. You can verify everthing is running by generating/adding an event
+8. You can verify everything is running by generating/adding an event
    to dmaap and seeing it flow through chameleon in the error.log file.
 
-### Running it locally (Assumming you're not using Emacs and using
+### Running it locally (Assuming you're not using Emacs and using
    `lein repl` from the command line)
 
 **Make you're in the directory at the root of your project. Open the
