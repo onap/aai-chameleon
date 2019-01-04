@@ -99,7 +99,6 @@
     (loop []
       (let [consumer-records (.poll consumer 0)]
         (when (and (->>  consumer-records
-                         (s/conform  :kafka/consumer-record)
                          (map consumer-record->clojure)
                          (send-with-sla-timeout chan sla-timeout))
                    (try (.commitSync consumer)
