@@ -7,7 +7,7 @@
   <name>aai-chameleon</name>
   <description/>
   <scm>
-    <tag>0e3c742bec42615ac1576d07c8fa322512e4c215</tag>
+    <tag>694cabe2c0c5aaa05de06e731112b4bf78366de5</tag>
   </scm>
   <build>
     <sourceDirectory>src</sourceDirectory>
@@ -206,7 +206,7 @@
     <dependency>
       <groupId>ring</groupId>
       <artifactId>ring-core</artifactId>
-      <version>1.6.3</version>
+      <version>1.7.1</version>
     </dependency>
     <dependency>
       <groupId>ring</groupId>
