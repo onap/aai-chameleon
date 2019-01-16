@@ -7,7 +7,8 @@
             [clojure.string :as str]
             [cheshire.core :as json]
             [chameleon.kafka :as ck])
-  (:import [org.apache.kafka.clients.consumer ConsumerRecord]
+  (:import [org.apache.kafka.clients.consumer ConsumerRecord ConsumerRecords ]
+           [org.apache.kafka.common TopicPartition]
            [java.util Properties]))
 
 (s/def ::host string?)
@@ -102,6 +103,11 @@
 (s/def :kafka/key ::string)
 (s/def :kafka/value ::string)
 
+(s/def :kafka/topic-partition (s/spec #(instance?  TopicPartition %) :gen (fn [] (->> (s/cat :topic :kafka/topic
+                                                                                            :partition :kafka/partition)
+                                                                                     s/gen
+                                                                                     (gen/fmap (fn [[topic partition]]
+                                                                                                 (TopicPartition. topic partition)))))))
 (s/def :kafka/consumer-record (s/spec #(instance?  ConsumerRecord %)
                                       :gen (fn [] (->> (s/cat :topic :kafka/topic
                                                              :partition :kafka/partition
@@ -111,6 +117,9 @@
                                                       s/gen
                                                       (gen/fmap (fn [[topic partition offset key value]]
                                                                   (ConsumerRecord. topic partition offset key value)))))))
+(s/def :kafka/consumer-records (s/spec #(instance? ConsumerRecords %)
+                                       :gen (fn [] (gen/fmap (fn [k] (ConsumerRecords. k))
+                                                            (s/gen (s/map-of :kafka/topic-partition (s/coll-of :kafka/consumer-record)))))))
 
 (s/def :kafka/clojure-consumer-record (s/spec (s/keys :req-un [:kafka/topic :kafka/partition
                                                                :kafka/offset :kafka/key :kafka/value])))
